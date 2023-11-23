@@ -31,7 +31,7 @@ const headerLogo = document.querySelector('.header__logo');
  * Navigate back to main page
  */
 headerLogo.addEventListener('click',()=>{
-    window.location.href = 'http://localhost:63342/STESCH302_FTO2308_GroupB2_Stefan_Schutte_IWACapstone/index.html?_ijt=8atiigrse1jl3h8p9526uhjp7h';
+    window.location.href = 'http://localhost:63342/STESCH302_FTO2308_GroupB2_Stefan_Schutte_IWACapstone/index.html?_ijt=tkd0v6ebshcchupjcitr1skp61';
 })
 
 /**
