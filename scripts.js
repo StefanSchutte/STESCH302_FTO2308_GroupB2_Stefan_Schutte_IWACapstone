@@ -39,7 +39,7 @@ headerLogo.addEventListener('click',()=>{
  * Basic error checking to ensure that the required data is available and ensures that the books variable exists and is an array.
  * Assigns books to matches, page is initialized to 1, and range is set.
  * And secondly ensures that the range variable exists and has a length of at least 2.
- * @type {[{image: string, pages: number, genres: string[], author: string, popularity: number, description: string, id: string, published: string, title: string}
+ * @type {[{image: string, pages: number, genres: string[], author: string, popularity: number, description: string, id: string, published: string, title: string}]}
  */
 const matches = books
 let page = 1;
