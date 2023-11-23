@@ -7,8 +7,6 @@ import {applyUserSettings} from "./theme.js";
  */
 const dataListItems = document.querySelector('[data-list-items]');
 const dataListButton = document.querySelector('[data-list-button]');
-// const dataSearchGenres = document.querySelector('[data-search-genres]');
-// const dataSearchAuthors = document.querySelector('[data-search-authors]');
 const dataListMessage = document.querySelector('[data-list-message]');
 const dataListImage = document.querySelector('[data-list-image]');
 const dataListActive = document.querySelector('[data-list-active]');
@@ -33,7 +31,7 @@ const headerLogo = document.querySelector('.header__logo');
  * Navigate back to main page
  */
 headerLogo.addEventListener('click',()=>{
-    window.location.href = '';
+    window.location.href = 'http://localhost:63342/STESCH302_FTO2308_GroupB2_Stefan_Schutte_IWACapstone/index.html?_ijt=8atiigrse1jl3h8p9526uhjp7h';
 })
 
 /**
