@@ -1,5 +1,5 @@
 /**
- * themes -  sets up themes for light and dark modes based on the user's system preference (prefers-color-scheme).
+ * Sets up themes for light and dark modes based on the user's system preference.
  * The chosen theme is then applied to the document's root element.
  * @type {{light: string, dark: string}}
  */

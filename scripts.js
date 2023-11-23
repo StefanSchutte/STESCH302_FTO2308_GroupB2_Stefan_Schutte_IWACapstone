@@ -1,37 +1,34 @@
 import {BOOKS_PER_PAGE, books, genres, authors } from "./data.js";
 import {applyUserSettings} from "./theme.js";
-
-/**
- * My query selectors for html elements. UI parts such as buttons, overlays, search fields... Used to manipulate the DOM later in the code.
- * @type {Element}
- */
-const dataListItems = document.querySelector('[data-list-items]');
-const dataListButton = document.querySelector('[data-list-button]');
-const dataListMessage = document.querySelector('[data-list-message]');
-const dataListImage = document.querySelector('[data-list-image]');
-const dataListActive = document.querySelector('[data-list-active]');
-const dataListBlur = document.querySelector('[data-list-blur]');
-const dataListTitle = document.querySelector('[data-list-title]');
-const dataListSubtitle = document.querySelector('[data-list-subtitle]');
-const dataListDescription = document.querySelector('[data-list-description]');
-const dataSearchOverlay = document.querySelector('[data-search-overlay]');
-const dataSearchTitle = document.querySelector('[data-search-title]');
-const dataSearchForm = document.querySelector('[data-search-form]');
-const dataSettingsOverlay = document.querySelector('[data-settings-overlay]');
-const dataSettingsForm = document.querySelector('[data-settings-form]');
-const dataHeaderSearch = document.querySelector('[data-header-search]');
-const dataSettingsTheme = document.querySelector('[data-settings-theme]');
-const dataSettingsCancel = document.querySelector('[data-settings-cancel]');
-const dataSearchCancel = document.querySelector('[data-search-cancel]');
-const dataListClose = document.querySelector('[data-list-close]');
-const dataHeaderSettings = document.querySelector('[data-header-settings]');
-const headerLogo = document.querySelector('.header__logo');
+import {
+    dataListItems,
+    dataListButton,
+    dataListMessage,
+    dataListActive,
+    dataListBlur,
+    dataListTitle,
+    dataListSubtitle,
+    dataListDescription,
+    dataSearchOverlay,
+    dataSearchTitle,
+    dataSearchForm,
+    dataSettingsOverlay,
+    dataSettingsForm,
+    dataHeaderSearch,
+    dataSettingsTheme,
+    dataSettingsCancel,
+    dataSearchCancel,
+    dataListClose,
+    dataHeaderSettings,
+    headerLogo,
+    dataListImage
+} from "./selectors.js";
 
 /**
  * Navigate back to main page
  */
 headerLogo.addEventListener('click',()=>{
-    window.location.href = 'http://localhost:63342/STESCH302_FTO2308_GroupB2_Stefan_Schutte_IWACapstone/index.html?_ijt=tkd0v6ebshcchupjcitr1skp61';
+    window.location.href = 'http://localhost:63342/STESCH302_FTO2308_GroupB2_Stefan_Schutte_IWACapstone/index.html';
 })
 
 /**
@@ -54,6 +51,7 @@ if (!range || range.length < 2) throw new Error('Range must be an array with two
  * Uses object destructuring to extract properties.
  * Button is created to preview a book. Sets innerHTML of button.
  * The authors object is used to dynamically display the author's name.
+ * @param book
  */
 function createPreview(book) {
     const { author, image, title, id, description, published } = book;
@@ -70,6 +68,16 @@ function createPreview(book) {
         </div>
     `;
     return previewElement;
+}
+
+/**
+ * Updates the display of remaining count of items in list.
+ * Function finds element with class property and updates innerText of element.
+ * @param count - number of remaining items to be displayed, then incorporated into the text content of the element, indicating the remaining count of items.
+ */
+function updateRemainingCount(count) {
+    const remainingCountElement = document.querySelector('.list__remaining');
+    remainingCountElement.innerText = ` (${count})`;
 }
 
 /**
@@ -99,22 +107,9 @@ const actions = {
             dataListButton.value = `Show more (${remainingItems > 0 ? remainingItems : 0})`;
             dataListButton.disabled = !(remainingItems > 0);
             updateRemainingCount(remainingItems);
-            console.log(remainingItems);
-            //seperate
-            //update again
         }
     }
 };
-
-/**
- * Updates the display of remaining count of items in list.
- * Function finds element with class property and updates innerText of element.
- * @param count - number of remaining items to be displayed, then incorporated into the text content of the element, indicating the remaining count of items.
- */
-function updateRemainingCount(count) {
-    const remainingCountElement = document.querySelector('.list__remaining');
-    remainingCountElement.innerText = ` (${count})`;
-}
 
 /**
  * Creates document fragment and populates it with book previews before appending fragment an element in the DOM.
@@ -156,19 +151,9 @@ dataListButton.innerHTML = /* html */
 //Event listeners are attached to various elements, such as the search and settings buttons, cancel buttons, and the "Show more" button.
 //These listeners handle actions like opening/closing overlays, submitting search/settings forms, and displaying more book previews.
 
+//Settings
 /**
- * When the 'dataSearchCancel' element is clicked, check if 'open' property of 'dataSearchOverlay is falsy. If not, returns.
- * Sets 'open' property of 'dataSearchOverlay' to 'false' to close overlay.
- * Clears the content of an input field.
- */
-dataSearchCancel.addEventListener('click', () => {
-    if (!dataSearchOverlay.open) return;
-    dataSearchOverlay.open = false
-    dataSearchTitle.value = '';
-});
-
-/**
- * Button for settings.
+ * Button for settings(theme).
  * Checks whether overlay is currently open. If open it returns.
  * If overlay is not open - overlay is displayed.
  * If it's not open (!dataListClose.open evaluates to true), sets the property of dataListClose to true for closing overlay.
@@ -199,15 +184,8 @@ dataSettingsForm.addEventListener('submit', (event) => {
     dataSettingsOverlay.open = false;
 });
 
-/**
- * Checks if the dataListActive element is currently open. If it is, it closes or hides the active element by setting its open property to false.
- */
-dataListClose.addEventListener('click', () => {
-    if (!dataListActive.open) return;
 
-    dataListActive.open = false;
-});
-
+//See More
 /**
  * Increments 'page' var, representing next page to be loaded.
  * Calculates the starting index of the books to be displayed on the current page.
@@ -241,13 +219,13 @@ dataListButton.addEventListener('click', () => {
     actions.list.updateRemaining()
 });
 
+//Search
 /**
  * Checks if 'dataSearchOverlay' is open, if open, returns.
  * Else sets 'open' property to 'true', displaying overlay.
  * @param {string} dataSearchOverlay
  */
 dataHeaderSearch.addEventListener('click', () => {
-
     if (dataSearchOverlay.open) return;
     dataSearchOverlay.open = true;
     dataSearchTitle.focus();
@@ -320,10 +298,20 @@ dataSearchForm.addEventListener('submit', (event) => {
 
     const remainingCountElement = document.querySelector('.list__remaining');
     remainingCountElement.innerText = ` (${remainingItems})`;
-//end the search
-
 });
 
+/**
+ * When the 'dataSearchCancel' element is clicked, check if 'open' property of 'dataSearchOverlay is falsy. If not, returns.
+ * Sets 'open' property of 'dataSearchOverlay' to 'false' to close overlay.
+ * Clears the content of an input field.
+ */
+dataSearchCancel.addEventListener('click', () => {
+    if (!dataSearchOverlay.open) return;
+    dataSearchOverlay.open = false
+    dataSearchTitle.value = '';
+});
+
+//Book Preview
 /**
  * Uses event delegation to determine if a click occurred on an element with the class 'preview' or its descendant. This is achieved using the closest method.
  * This is done to check if the clicked element or any of its ancestors have the preview class.
@@ -352,4 +340,13 @@ dataSearchForm.addEventListener('submit', (event) => {
         dataListTitle.innerText = active.title;
         dataListSubtitle.innerText = `${authors[active.author]} (${new Date(active.published).getFullYear()})`;
         dataListDescription.innerText = active.description;
+});
+
+/**
+ * Checks if the dataListActive element is currently open. If it is, it closes or hides the active element by setting its open property to false.
+ */
+dataListClose.addEventListener('click', () => {
+    if (!dataListActive.open) return;
+
+    dataListActive.open = false;
 });
