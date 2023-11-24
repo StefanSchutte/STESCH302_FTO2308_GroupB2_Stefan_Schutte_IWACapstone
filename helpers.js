@@ -46,7 +46,7 @@ export function createAndAppendElement(type, attributes, text = '', parent, data
  * Each 'option' element is appended to the 'genresFragment'.
  * Appends the populated 'genresFragment' to the element with the id 'dataSearchGenres' in the DOM.
  * @type {DocumentFragment}
- * param {String}
+ * @param {String}
  */
 export const genresFragment = document.createDocumentFragment();
 createAndAppendElement('option', { value: 'any' }, 'All Genres', genresFragment);
