@@ -52,6 +52,7 @@ if (!range || range.length < 2) throw new Error('Range must be an array with two
  * Button is created to preview a book. Sets innerHTML of button.
  * The authors object is used to dynamically display the author's name.
  * @param book
+ * @type function
  */
 function createPreview(book) {
     const { author, image, title, id, description, published } = book;
@@ -74,6 +75,7 @@ function createPreview(book) {
  * Updates the display of remaining count of items in list.
  * Function finds element with class property and updates innerText of element.
  * @param count - number of remaining items to be displayed, then incorporated into the text content of the element, indicating the remaining count of items.
+ * @type function
  */
 function updateRemainingCount(count) {
     const remainingCountElement = document.querySelector('.list__remaining');
@@ -157,6 +159,7 @@ dataListButton.innerHTML = /* html */
  * Checks whether overlay is currently open. If open it returns.
  * If overlay is not open - overlay is displayed.
  * If it's not open (!dataListClose.open evaluates to true), sets the property of dataListClose to true for closing overlay.
+ * @type function
  */
 dataHeaderSettings.addEventListener('click', ()=> {
     if (dataSettingsOverlay.open) return;
@@ -170,6 +173,7 @@ dataHeaderSettings.addEventListener('click', ()=> {
 /**
  * Checks whether the settings overlay is not open. If the overlay is not open, the function immediately returns.
  * If the settings overlay is open, sets 'dataSettingsOverlay' to false, indicating that the settings overlay should be closed.
+ * @type function
  */
 dataSettingsCancel.addEventListener('click', () => {
     if (!(dataSettingsOverlay).open) return;
@@ -177,6 +181,7 @@ dataSettingsCancel.addEventListener('click', () => {
 
 /**
  *  Gathering user settings from the form and applying it. Closes the settings overlay.
+ *  @type function
  */
 dataSettingsForm.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -196,7 +201,7 @@ dataSettingsForm.addEventListener('submit', (event) => {
  * Appends the created previews to the 'dataListItems' element in the DOM.
  * Updates the page variable to the new page, indicating that the next page should be loaded next time the button is clicked.
  * Calls the updateRemaining function to recalculate and update the remaining items count and the state of the "Show more" button based on the current page and the number of items per page.
- *
+ * @type function
  */
 dataListButton.addEventListener('click', () => {
     const newPage = page + 1;
@@ -223,7 +228,7 @@ dataListButton.addEventListener('click', () => {
 /**
  * Checks if 'dataSearchOverlay' is open, if open, returns.
  * Else sets 'open' property to 'true', displaying overlay.
- * @param {string} dataSearchOverlay
+ * @type function
  */
 dataHeaderSearch.addEventListener('click', () => {
     if (dataSearchOverlay.open) return;
@@ -242,6 +247,7 @@ dataHeaderSearch.addEventListener('click', () => {
  * Scrolls to the top of the data list.
  * Update the "Show more" button based on the remaining items.
  * Store the search results in a variable for future reference.
+ * @type function
  */
 dataSearchForm.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -304,6 +310,7 @@ dataSearchForm.addEventListener('submit', (event) => {
  * When the 'dataSearchCancel' element is clicked, check if 'open' property of 'dataSearchOverlay is falsy. If not, returns.
  * Sets 'open' property of 'dataSearchOverlay' to 'false' to close overlay.
  * Clears the content of an input field.
+ * @type function
  */
 dataSearchCancel.addEventListener('click', () => {
     if (!dataSearchOverlay.open) return;
@@ -320,7 +327,7 @@ dataSearchCancel.addEventListener('click', () => {
  * Then, it uses Array.find to find the book in the books array that matches the extracted id.
  * If no matching book found, return.
  * If the book is found (active is truthy), it updates the UI with information from the clicked book.
- * @ngdoc method
+ * @type function
  */
     dataListItems.addEventListener('click', (event) => {
         const clickedPreview = event.target.closest('.preview');
@@ -344,6 +351,7 @@ dataSearchCancel.addEventListener('click', () => {
 
 /**
  * Checks if the dataListActive element is currently open. If it is, it closes or hides the active element by setting its open property to false.
+ * @type function
  */
 dataListClose.addEventListener('click', () => {
     if (!dataListActive.open) return;
