@@ -28,3 +28,5 @@ Cancel can be hit to quit out of the search functionality.
 The user can change between light and dark mode by hitting the settings button and selecting a theme and pressing save.
 
 List of technologies used in project: JavaScript, CSS, HTML, Web Storm and Github.
+
+Deployed site: https://bookconnect-app-js.netlify.app/
