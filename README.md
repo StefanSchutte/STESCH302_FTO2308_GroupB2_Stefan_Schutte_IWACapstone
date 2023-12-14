@@ -30,3 +30,5 @@ The user can change between light and dark mode by hitting the settings button a
 List of technologies used in project: JavaScript, CSS, HTML, Web Storm and Github.
 
 Deployed site: https://bookconnect-app-js.netlify.app/
+![2023-12-14_17-42](https://github.com/StefanSchutte/STESCH302_FTO2308_GroupB2_Stefan_Schutte_IWACapstone/assets/127427422/9ad1ce15-369d-4709-992e-7658d40be63a)
+
